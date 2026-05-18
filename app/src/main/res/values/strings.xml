@@ -22,4 +22,7 @@
     <string name="image_view_item_transform_content_description">Represents an image view in the
         item
     </string>
+
+    <!-- Google Maps API Key -->
+    <string name="google_maps_key">AIzaSyDyxGm9gcTykaRsvSlOkQ0PDFr17ZgMheQ</string>
 </resources>

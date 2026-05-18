@@ -1,41 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/inicio_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    tools:context=".ui.inicio.InicioFragment">
 
-    <!-- Título principal (mantengo el id original tvCentrado para compatibilidad) -->
+    <fragment
+        android:id="@+id/mapa"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <TextView
         android:id="@+id/tvCentrado"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Inicio"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textAlignment="center"
         android:gravity="center"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tvSubtle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
-        android:layout_marginTop="120dp"/>
+        android:textSize="18sp"
+        android:padding="12dp"
+        android:background="@android:color/transparent"
+        android:layout_gravity="top" />
 
-    <!-- Subtítulo descriptivo (opcional, fácil de actualizar desde el ViewModel) -->
-    <TextView
-        android:id="@+id/tvSubtle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Aquí verás un resumen de tus inmuebles y novedades"
-        android:textSize="14sp"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintTop_toBottomOf="@id/tvCentrado"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="12dp"/>
+    <ImageButton
+        android:id="@+id/btnMiUbicacion"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_menu_mylocation"
+        app:backgroundTint="?attr/colorPrimary"
+        app:tint="@android:color/white"
+        android:layout_gravity="bottom|end"
+        android:contentDescription="@string/fab_content_description" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
