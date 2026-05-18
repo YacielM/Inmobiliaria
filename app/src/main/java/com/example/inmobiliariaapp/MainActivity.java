@@ -12,10 +12,12 @@ import com.google.android.material.navigation.NavigationView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.navigation.Navigation;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,22 +45,31 @@ public class MainActivity extends AppCompatActivity {
         assert navHostFragment != null;
         NavController navController = navHostFragment.getNavController();
 
+        // Agregar aquí los destinos top-level para que el botón de hamburguesa funcione correctamente
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.inicioFragment
+                R.id.inicioFragment,
+                R.id.perfilFragment,
+                R.id.nav_inmuebles,
+                R.id.nav_inquilinos,
+                R.id.nav_contratos
         ).setOpenableLayout(binding.drawerLayout).build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 
-        // Listener para el NavigationView (drawer)
+        // Conectar NavigationView con NavController para que los items naveguen automáticamente
         NavigationView navView = binding.navView;
+        NavigationUI.setupWithNavController(navView, navController);
+
+        // Listener para interceptar logout (no es un destino del nav graph)
         navView.setNavigationItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.nav_logout) {
+            int id = item.getItemId();
+            if (id == R.id.nav_logout) {
                 new AlertDialog.Builder(this)
                         .setTitle("Logout")
                         .setMessage("¿Estás seguro que querés salir de la sesión?")
                         .setPositiveButton("Sí", (dialog, which) -> {
                             // Borrar token y volver a LoginActivity
-                            ApiClient.guardarToken(this, null);
+                            ApiClient.borrarToken(this);
                             startLoginAndFinish();
                         })
                         .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
@@ -69,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
 
+            // Dejar que NavigationUI maneje el resto de destinos
             boolean handled = NavigationUI.onNavDestinationSelected(item, navController);
             if (handled) binding.drawerLayout.closeDrawers();
             return handled;
@@ -98,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // Si tenés settings en overflow, lo manejás aquí
         if (item.getItemId() == R.id.nav_settings) {
-            NavController navController = androidx.navigation.Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
             navController.navigate(R.id.nav_settings);
             return true;
         }
@@ -107,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        NavController navController = androidx.navigation.Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration) || super.onSupportNavigateUp();
     }
 }

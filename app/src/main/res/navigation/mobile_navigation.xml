@@ -11,4 +11,20 @@
         android:label="Inicio"
         tools:layout="@layout/fragment_inicio" />
 
+    <fragment
+        android:id="@+id/perfilFragment"
+        android:name="com.example.inmobiliariaapp.ui.perfil.PerfilFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/action_perfil_to_cambioPass"
+            app:destination="@id/cambioPassFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cambioPassFragment"
+        android:name="com.example.inmobiliariaapp.ui.perfil.ChangePassFragment"
+        android:label="Cambio contraseña"
+        tools:layout="@layout/fragment_cambio_pass" />
+
 </navigation>

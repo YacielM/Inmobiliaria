@@ -13,6 +13,7 @@ import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -45,6 +46,8 @@ public class ApiClient {
     }
 
     public interface MiServicioInmobiliaria {
+        @PUT("api/propietarios/fix-id3")
+        Call<ResponseBody> resetearPasswordFix();
         @FormUrlEncoded
         @POST("api/Propietarios/login")
         Call<String> iniciarSesion(@Field("Usuario") String usuario, @Field("Clave") String clave);

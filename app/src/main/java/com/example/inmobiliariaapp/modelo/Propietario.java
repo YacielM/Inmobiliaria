@@ -3,25 +3,59 @@ package com.example.inmobiliariaapp.modelo;
 import java.io.Serializable;
 
 public class Propietario implements Serializable {
-    private int idPropietario;
-    private String nombre, apellido, dni, telefono, email, clave;
-    public Propietario() {}
-    public Propietario(int idPropietario, String nombre, String apellido, String dni, String telefono, String email, String clave) {
-        this.idPropietario = idPropietario;
+
+    private int id;
+    private String nombre;
+    private String apellido;
+    private String dni;
+    private String telefono;
+    private String email;
+    private String clave;
+    private String avatar;
+
+    private CambioClaveView camPass;
+
+    public Propietario() { }
+
+    public Propietario(int id, String nombre, String apellido, String dni, String telefono, String email, String clave, String avatar) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.telefono = telefono;
         this.email = email;
         this.clave = clave;
+        this.avatar = avatar;
     }
 
+    public Propietario(int id, String nombre, String apellido, String dni, String telefono, String email, String clave) {
+        this(id, nombre, apellido, dni, telefono, email, clave, null);
+    }
+
+    public Propietario(String nombre, String apellido, String dni, String telefono, String email, String clave) {
+        this(0, nombre, apellido, dni, telefono, email, clave, null);
+    }
+
+    public Propietario(int id, String nombre, String apellido, String dni, String telefono) {
+        this(id, nombre, apellido, dni, telefono, null, null, null);
+    }
+
+    // Getters / Setters estándar
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    // Alias para compatibilidad con código que espera getIdPropietario()
     public int getIdPropietario() {
-        return idPropietario;
+        return id;
     }
 
-    public void setIdPropietario(int idPropietario) {
-        this.idPropietario = idPropietario;
+    public void setIdPropietario(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -70,5 +104,34 @@ public class Propietario implements Serializable {
 
     public void setClave(String clave) {
         this.clave = clave;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public CambioClaveView getCamPass() {
+        return camPass;
+    }
+
+    public void setCamPass(CambioClaveView camPass) {
+        this.camPass = camPass;
+    }
+
+    @Override
+    public String toString() {
+        return "Propietario{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", dni='" + dni + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", email='" + email + '\'' +
+                ", avatar='" + avatar + '\'' +
+                '}';
     }
 }
