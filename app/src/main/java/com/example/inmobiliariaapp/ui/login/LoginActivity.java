@@ -1,13 +1,14 @@
 package com.example.inmobiliariaapp.ui.login;
 
-import android.content.Intent;
-import android.os.Bundle;
+import android.content.Intent;import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+import androidx.appcompat.app.AlertDialog; // para el cartel
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.inmobiliariaapp.MainActivity;
 import com.example.inmobiliariaapp.databinding.ActivityLoginBinding;
+import com.example.inmobiliariaapp.request.ApiClient;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -18,27 +19,38 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // REGLA 1: Cada Activity con su ViewModel
-        binding = ActivityLoginBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        // El ViewModel verifica el token al iniciar
         vm = new ViewModelProvider(this).get(LoginViewModel.class);
-
-        // REGLA 2: El fragment/Activity espera con un Observer
-        configurarObservadores();
-
-        // REGLA 4: Enviamos la intención de verificar sesión al VM sin lógica aquí
         vm.verificarToken();
 
-        // REGLA 4: Los clics solo envían datos, no validan nada
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        configurarObservadores();
+
+        // Click en Iniciar Sesión
         binding.btnLogin.setOnClickListener(v -> {
             String email = binding.etEmail.getText().toString();
             String pass = binding.etPassword.getText().toString();
             vm.iniciarSesion(email, pass);
         });
 
+        //La Activity maneja el diálogo (UI) pero el VM la acción (Lógica)
         binding.tvForgot.setOnClickListener(v -> {
-            vm.resetPassword("");
+            mostrarDialogoConfirmacion();
         });
+    }
+
+    private void mostrarDialogoConfirmacion() {
+        new AlertDialog.Builder(this)
+                .setTitle("Restablecer Contraseña")
+                .setMessage("¿Está seguro de que desea resetear la contraseña del usuario ID:3?")
+                .setPositiveButton("Sí, resetear", (dialog, which) -> {
+                    // Si confirma, recién ahí llamamos al VM
+                    vm.resetPassword("");
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
     }
 
     private void configurarObservadores() {

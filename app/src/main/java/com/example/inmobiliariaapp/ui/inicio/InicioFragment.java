@@ -39,7 +39,7 @@ public class InicioFragment extends Fragment {
     private GoogleMap map;
     private FusedLocationProviderClient fusedLocationClient;
 
-    // Coordenadas por defecto (ejemplo de la inmobiliaria)
+    // Coordenadas por defecto
     private final LatLng inmobiliaria = new LatLng(-33.301710, -66.331052);
 
     // Lanzador para pedir permiso de ubicación

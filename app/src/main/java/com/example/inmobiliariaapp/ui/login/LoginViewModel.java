@@ -27,7 +27,7 @@ public class LoginViewModel extends AndroidViewModel {
     public LiveData<String> getErrorMessage() { return errorMessage; }
     public LiveData<Boolean> isLoading() { return loading; }
 
-    // REGLA 4: El ViewModel decide si el token es válido o no
+
     public void verificarToken() {
         String token = ApiClient.obtenerToken(getApplication());
         if (token != null && !token.isEmpty()) {
@@ -36,7 +36,7 @@ public class LoginViewModel extends AndroidViewModel {
     }
 
     public void iniciarSesion(String usuario, String clave) {
-        // REGLA 3: Las validaciones se hacen en el ViewModel
+
         if (usuario == null || usuario.trim().isEmpty() || clave == null || clave.trim().isEmpty()) {
             errorMessage.setValue("Debe ingresar usuario y contraseña");
             return;

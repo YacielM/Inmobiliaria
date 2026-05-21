@@ -17,7 +17,7 @@ public class InicioViewModel extends ViewModel {
     }
 
     public void cargarDatos() {
-        // Mantener simple: actualizar mensaje; aquí podés cargar prefs o llamar a un repo.
+
         mensaje.setValue("Bienvenido — aquí verás tus inmuebles");
     }
 }

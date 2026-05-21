@@ -22,11 +22,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <!-- Clave Actual con botón de ver contraseña -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilClaveActual"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="24dp"
+            android:hint="Contraseña actual"
+            android:textColorHint="#BBBBBB"
+            app:hintTextColor="#FFFFFF"
+            app:boxStrokeColor="#FFFFFF"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="#FFFFFF"
             app:layout_constraintTop_toBottomOf="@id/tvTituloCambio"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -34,18 +42,24 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etClaveActual"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:hint="Contraseña actual"
+                android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:padding="12dp"
                 android:textColor="#FFFFFF" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Clave Nueva con botón de ver contraseña -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilClaveNueva"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="16dp"
+            android:hint="Nueva contraseña"
+            android:textColorHint="#BBBBBB"
+            app:hintTextColor="#FFFFFF"
+            app:boxStrokeColor="#FFFFFF"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="#FFFFFF"
             app:layout_constraintTop_toBottomOf="@id/tilClaveActual"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -53,10 +67,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etClaveNueva"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:hint="Nueva contraseña"
+                android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:padding="12dp"
                 android:textColor="#FFFFFF" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,12 +76,13 @@
             android:id="@+id/btAceptarCambiarPass"
             android:layout_width="0dp"
             android:layout_height="56dp"
-            android:layout_marginTop="18dp"
-            android:background="#1F1F1F"
+            android:layout_marginTop="32dp"
             android:text="Confirmar cambio"
             android:textAllCaps="false"
-            android:textColor="#1F1F1F"
+            android:textColor="#FFFFFF"
             android:textSize="16sp"
+            app:cornerRadius="12dp"
+            app:backgroundTint="#018786"
             app:layout_constraintTop_toBottomOf="@id/tilClaveNueva"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

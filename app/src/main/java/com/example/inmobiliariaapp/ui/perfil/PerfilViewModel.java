@@ -93,7 +93,7 @@ public class PerfilViewModel extends AndroidViewModel {
         });
     }
 
-    // --- NUEVO MÉTODO PARA CAMBIO DE PASS (Regla 3 y 4) ---
+
     public void cambiarPass(String actual, String nueva) {
         if (actual.isEmpty() || nueva.isEmpty()) {
             error.setValue("Debe completar ambos campos");

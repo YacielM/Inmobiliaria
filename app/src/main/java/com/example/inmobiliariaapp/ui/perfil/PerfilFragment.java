@@ -22,14 +22,14 @@ public class PerfilFragment extends Fragment {
         binding = FragmentPerfilBinding.inflate(inflater, container, false);
         vm = new ViewModelProvider(this).get(PerfilViewModel.class);
 
-        // REGLA 2: El fragment espera con Observers
+        //El fragment espera con Observers
         configurarObservadores();
 
-        // REGLA 4: El click solo avisa al VM, no ejecuta lógica
+        // El click solo avisa al VM, no ejecuta lógica
         binding.btEditar.setOnClickListener(v -> vm.cambiarEstadoEdicion(true));
 
         binding.btAceptar.setOnClickListener(v -> {
-            // REGLA 4: Solo enviamos datos crudos
+            //Solo enviamos datos crudos
             vm.editarPerfil(
                     binding.etNombre.getText().toString().trim(),
                     binding.etApellido.getText().toString().trim(),
@@ -58,7 +58,7 @@ public class PerfilFragment extends Fragment {
             }
         });
 
-        // REGLA 4: El Fragment habilita la edición porque el VM se lo ordena
+        //El Fragment habilita la edición porque el VM se lo ordena
         vm.getEstadoEdicion().observe(getViewLifecycleOwner(), this::habilitarEdicion);
 
         vm.getError().observe(getViewLifecycleOwner(), s -> {
