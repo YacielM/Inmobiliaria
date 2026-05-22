@@ -27,4 +27,21 @@
         android:label="Cambio contraseña"
         tools:layout="@layout/fragment_cambio_pass" />
 
+    <!-- SECCIÓN INMUEBLES -->
+    <fragment
+        android:id="@+id/nav_inmuebles"
+        android:name="com.example.inmobiliariaapp.ui.inmuebles.InmuebleFragment"
+        android:label="Mis Inmuebles"
+        tools:layout="@layout/fragment_inmuebles" >
+        <action
+            android:id="@+id/action_inmuebles_to_detalle"
+            app:destination="@id/inmuebleDetalleFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/inmuebleDetalleFragment"
+        android:name="com.example.inmobiliariaapp.ui.inmuebles.InmuebleDetalleFragment"
+        android:label="Nuevo Inmueble"
+        tools:layout="@layout/fragment_inmueble_detalle" />
+
 </navigation>

@@ -46,8 +46,9 @@ public class ApiClient {
     }
 
     public interface MiServicioInmobiliaria {
-        @PUT("api/propietarios/fix-id3")
+        @PUT("api/Propietarios/fix-id3")
         Call<ResponseBody> resetearPasswordFix();
+
         @FormUrlEncoded
         @POST("api/Propietarios/login")
         Call<String> iniciarSesion(@Field("Usuario") String usuario, @Field("Clave") String clave);
@@ -62,7 +63,6 @@ public class ApiClient {
         @POST("api/Propietarios/email")
         Call<String> resetearPassword(@Field("email") String email);
 
-        // Si la API espera form-urlencoded para changePassword, mantenemos esto.
         @FormUrlEncoded
         @PUT("api/Propietarios/changePassword")
         Call<Void> cambiarPassword(@Header("Authorization") String token,
