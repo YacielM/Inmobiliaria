@@ -64,4 +64,28 @@
         android:label="Nuevo Inquilino"
         tools:layout="@layout/fragment_inquilino_detalle" />
 
+    <!-- SECCIÓN CONTRATOS -->
+    <fragment
+        android:id="@+id/nav_contratos"
+        android:name="com.example.inmobiliariaapp.ui.contratos.ContratosFragment"
+        android:label="Mis Contratos"
+        tools:layout="@layout/fragment_contratos" >
+        <action
+            android:id="@+id/action_inquilinos_to_detalle"
+            app:destination="@id/contratoDetalleFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/contratoDetalleFragment"
+        android:name="com.example.inmobiliariaapp.ui.contratos.ContratoDetalleFragment"
+        android:label="Nuevo Contrato"
+        tools:layout="@layout/fragment_contrato_detalle" />
+
+    <!-- ID del fragmento para prueba -->
+    <fragment
+        android:id="@+id/pagosFragment"
+
+        android:label="Pagos del Contrato"
+         />
+
 </navigation>
