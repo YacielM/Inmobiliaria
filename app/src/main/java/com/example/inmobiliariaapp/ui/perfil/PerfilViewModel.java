@@ -19,7 +19,7 @@ public class PerfilViewModel extends AndroidViewModel {
     private final MutableLiveData<String> infoMessage = new MutableLiveData<>();
     private final MutableLiveData<Boolean> estadoEdicion = new MutableLiveData<>(false);
 
-    // LiveData para avisar al Fragment que debe cerrar sesión (Regla 2)
+    // LiveData para avisar al Fragment que debe cerrar sesión
     private final MutableLiveData<Boolean> logoutEvent = new MutableLiveData<>();
 
     public PerfilViewModel(@NonNull Application application) {
@@ -65,16 +65,22 @@ public class PerfilViewModel extends AndroidViewModel {
             error.setValue("Campos obligatorios vacíos");
             return;
         }
+
         Propietario actual = propietarioM.getValue();
         if (actual == null) return;
 
+        // Seteamos los datos nuevos
         actual.setNombre(nombre);
         actual.setApellido(apellido);
         actual.setDni(dni);
         actual.setTelefono(telefono);
 
+        // clave en null para que no se modifique ni viaje por la red
+        actual.setClave(null);
+
         String token = ApiClient.obtenerToken(getApplication());
         loading.setValue(true);
+
         ApiClient.getServicio().actualizarPerfil("Bearer " + token, actual).enqueue(new Callback<Propietario>() {
             @Override
             public void onResponse(Call<Propietario> call, Response<Propietario> response) {
@@ -83,7 +89,9 @@ public class PerfilViewModel extends AndroidViewModel {
                     propietarioM.postValue(response.body());
                     infoMessage.postValue("Perfil actualizado");
                     estadoEdicion.postValue(false);
-                } else error.postValue("Error al actualizar");
+                } else {
+                    error.postValue("Error al actualizar");
+                }
             }
             @Override
             public void onFailure(Call<Propietario> call, Throwable t) {

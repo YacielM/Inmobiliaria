@@ -5,12 +5,14 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@id/inicioFragment">
 
+    <!-- SECCIÓN INICIO -->
     <fragment
         android:id="@+id/inicioFragment"
         android:name="com.example.inmobiliariaapp.ui.inicio.InicioFragment"
         android:label="Inicio"
         tools:layout="@layout/fragment_inicio" />
 
+    <!-- SECCIÓN PERFIL -->
     <fragment
         android:id="@+id/perfilFragment"
         android:name="com.example.inmobiliariaapp.ui.perfil.PerfilFragment"
@@ -21,6 +23,7 @@
             app:destination="@id/cambioPassFragment" />
     </fragment>
 
+    <!-- SECCIÓN CAMBIO CONTRASEÑA -->
     <fragment
         android:id="@+id/cambioPassFragment"
         android:name="com.example.inmobiliariaapp.ui.perfil.ChangePassFragment"
@@ -43,5 +46,22 @@
         android:name="com.example.inmobiliariaapp.ui.inmuebles.InmuebleDetalleFragment"
         android:label="Nuevo Inmueble"
         tools:layout="@layout/fragment_inmueble_detalle" />
+
+    <!-- SECCIÓN INQUILINOS -->
+    <fragment
+        android:id="@+id/nav_inquilinos"
+        android:name="com.example.inmobiliariaapp.ui.inquilinos.InquilinosFragment"
+        android:label="Mis Inquilinos"
+        tools:layout="@layout/fragment_inquilinos" >
+        <action
+            android:id="@+id/action_inquilinos_to_detalle"
+            app:destination="@id/inquilinoDetalleFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/inquilinoDetalleFragment"
+        android:name="com.example.inmobiliariaapp.ui.inquilinos.InquilinoDetalleFragment"
+        android:label="Nuevo Inquilino"
+        tools:layout="@layout/fragment_inquilino_detalle" />
 
 </navigation>

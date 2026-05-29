@@ -3,7 +3,9 @@ package com.example.inmobiliariaapp.request;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.inmobiliariaapp.modelo.Contrato;
 import com.example.inmobiliariaapp.modelo.Inmueble;
+import com.example.inmobiliariaapp.modelo.Pago;
 import com.example.inmobiliariaapp.modelo.Propietario;
 import com.example.inmobiliariaapp.modelo.CambioClaveView;
 import com.google.gson.Gson;
@@ -26,6 +28,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 public class ApiClient {
 
@@ -83,6 +86,12 @@ public class ApiClient {
         Call<Inmueble> cargarInmuebles(@Header("Authorization") String token,
                                        @Part MultipartBody.Part imagen,
                                        @Part("inmueble") RequestBody inmueble);
+
+        @GET("api/contratos/inmueble/{id}")
+        Call<Contrato> obtenerContratoPorInmueble(@Header("Authorization") String token, @Path("id") int idInmueble);
+
+        @GET("api/pagos/contrato/{id}")
+        Call<List<Pago>> obtenerPagosPorContrato(@Header("Authorization") String token, @Path("id") int idContrato);
     }
 
     // SharedPreferences: nombre y clave consistentes
